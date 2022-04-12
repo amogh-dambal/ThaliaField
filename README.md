@@ -1,4 +1,4 @@
-![](img/thalia-v1.jpg)
+![](img/thalia-v1.jpg =200x200)
 
 # Thalia Fieldstone
 ## The Thunderfield AI Project
