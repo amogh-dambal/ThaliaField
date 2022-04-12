@@ -1,3 +1,5 @@
+![](img/thalia-v1.jpg)
+
 # Thalia Fieldstone
 ## The Thunderfield AI Project
 Thalia Fieldstone is a passionate songwriter trying her best to write poignant, 
