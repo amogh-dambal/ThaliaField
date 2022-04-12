@@ -1,50 +1,52 @@
-import argparse
 import torch
 import numpy as np
 from torch import nn, optim
 from torch.utils.data import DataLoader
-from model import Model
-from dataset import Dataset
+
 
 def train(dataset, model, args):
     model.train()
 
-    dataloader = DataLoader(dataset, batch_size=args.batch_size)
-    criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.001)
+    loader = DataLoader(dataset, batch_size=args.batch_size)
+    loss = nn.CrossEntropyLoss()
+    opt = optim.Adam(model.parameters(), lr=0.001)
 
     for epoch in range(args.max_epochs):
-        state_h, state_c = model.init_state(args.sequence_length)
+        h, c = model.init_state(args.sequence_length)
 
-        for batch, (x, y) in enumerate(dataloader):
-            optimizer.zero_grad()
+        for batch, (x, y) in enumerate(loader):
+            opt.zero_grad()
 
-            y_pred, (state_h, state_c) = model(x, (state_h, state_c))
-            loss = criterion(y_pred.transpose(1, 2), y)
+            y_pred, (h, c) = model(x, (h, c))
+            loss = nn.CrossEntropyLoss(y_pred.transpose(1, 2), y)
 
-            state_h = state_h.detach()
-            state_c = state_c.detach()
+            h = h.detach()
+            c = c.detach()
 
             loss.backward()
-            optimizer.step()
+            opt.step()
 
-            print({ 'epoch': epoch, 'batch': batch, 'loss': loss.item() })
-    
-    torch.save(model, 'models/first-model.tfld')
+            # TODO: use logging framework to log this
+            # TODO: add a verbose mode toggle
+            print({"epoch": epoch, "batch": batch, "loss": loss.item()})
 
-def predict(dataset, model, text, next_words=240):
+    torch.save(model, "models/first-model.tfld")
+
+
+def predict(dataset, model, text, nextWords=240):
     model.eval()
 
-    words = text.split(' ')
-    state_h, state_c = model.init_state(len(words))
+    seed = text.split(" ")
+    words = seed
+    h, c = model.init_state(len(seed))
 
-    for i in range(0, next_words):
-        x = torch.tensor([[dataset.wordToIdx[w] for w in words[i:]]])
-        y_pred, (state_h, state_c) = model(x, (state_h, state_c))
+    for i in range(0, nextWords):
+        x = torch.tensor([[dataset.wordToIdx[w] for w in seed[i:]]])
+        yPred, (h, c) = model(x, (h, c))
 
-        last_word_logits = y_pred[0][-1]
-        p = torch.nn.functional.softmax(last_word_logits, dim=0).detach().numpy()
-        word_index = np.random.choice(len(last_word_logits), p=p)
-        words.append(dataset.idxToWord[word_index])
+        logits = yPred[0][-1]
+        p = torch.nn.functional.softmax(logits, dim=0).detach().numpy()
+        wordIdx = np.random.choice(len(logits), p=p)
+        words.append(dataset.idxToWord[wordIdx])
 
     return words
