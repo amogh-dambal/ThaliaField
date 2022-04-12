@@ -4,7 +4,10 @@ from collections import Counter
 
 
 class Dataset(torch.utils.data.Dataset):
-    def __init__(self, args,):
+    def __init__(
+        self,
+        args,
+    ):
         self.args = args
         self.sequenceLength = self.args.sequence_length
         self.words = self.loadWords()
@@ -15,7 +18,7 @@ class Dataset(torch.utils.data.Dataset):
         self.wordsIndices = [self.wordToIdx[w] for w in self.words]
 
     def loadWords(self):
-        with open('data/lyrics.txt', 'r', encoding='utf-8-sig') as f:
+        with open("data/lyrics.txt", "r", encoding="utf-8-sig") as f:
             lines = f.readlines()
             words = [word for line in lines for word in line.split()]
         return words

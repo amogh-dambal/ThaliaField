@@ -38,7 +38,7 @@ def predict(dataset, model, text, nextWords=240):
 
     seed = text.split(" ")
     words = seed
-    h, c = model.init_state(len(seed))
+    h, c = model.initState(len(seed))
 
     for i in range(0, nextWords):
         x = torch.tensor([[dataset.wordToIdx[w] for w in seed[i:]]])

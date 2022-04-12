@@ -1,25 +1,26 @@
 import torch
 from torch import nn
 
+
 class Model(nn.Module):
     def __init__(self, dataset):
         super(Model, self).__init__()
-        self.lstm_size = 128
-        self.embedding_dim = 128
-        self.num_layers = 3
+        self.lstmSize = 128
+        self.embeddingDim = 128
+        self.layers = 3
 
-        n_vocab = len(dataset.uniqueWords)
+        N = len(dataset.uniqueWords)
         self.embedding = nn.Embedding(
-            num_embeddings=n_vocab,
-            embedding_dim=self.embedding_dim,
+            num_embeddings=N,
+            embedding_dim=self.embeddingDim,
         )
         self.lstm = nn.LSTM(
-            input_size=self.lstm_size,
-            hidden_size=self.lstm_size,
-            num_layers=self.num_layers,
+            input_size=self.lstmSize,
+            hidden_size=self.lstmSize,
+            num_layers=self.layers,
             dropout=0.2,
         )
-        self.fc = nn.Linear(self.lstm_size, n_vocab)
+        self.fc = nn.Linear(self.lstmSize, N)
 
     def forward(self, x, prev_state):
         embed = self.embedding(x)
@@ -27,6 +28,8 @@ class Model(nn.Module):
         logits = self.fc(output)
         return logits, state
 
-    def init_state(self, sequence_length):
-        return (torch.zeros(self.num_layers, sequence_length, self.lstm_size),
-                torch.zeros(self.num_layers, sequence_length, self.lstm_size))
+    def initState(self, seqLength):
+        return (
+            torch.zeros(self.layers, seqLength, self.lstmSize),
+            torch.zeros(self.layers, seqLength, self.lstmSize),
+        )
