@@ -15,3 +15,10 @@ consider her more of a dedicated Thunderfield fan rather than an actual member.
 2. Modify the 4-word seed in the `main.py` source file to whatever you'd like.
     - You may modify Thalia's default configurations using the configuration settings found in `poetics.json`. 
 3. Run Thalia using the command `python -l models/first-model.tfld main.py`
+
+## Credits
+Much of the initial code for Thalia v1.0.0 was sourced from 
+[this tutorial](https://www.kdnuggets.com/2020/07/pytorch-lstm-text-generation-tutorial.html)
+on LSTM architectures in `pytorch`. Subsequent versions of Thalia
+will aim to incorporate more and more of our own code and less tutorial code,
+including as we experiment with different hyperparameters and architectures.
