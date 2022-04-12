@@ -5,9 +5,9 @@ from torch import nn
 class Model(nn.Module):
     def __init__(self, dataset):
         super(Model, self).__init__()
-        self.lstmSize = 128
-        self.embeddingDim = 128
-        self.layers = 3
+        self.lstmSize = 512
+        self.embeddingDim = 512
+        self.layers = 7
 
         N = len(dataset.uniqueWords)
         self.embedding = nn.Embedding(
