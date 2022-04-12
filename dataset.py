@@ -20,7 +20,7 @@ class Dataset(torch.utils.data.Dataset):
     def loadWords(self):
         with open("data/lyrics.txt", "r", encoding="utf-8-sig") as f:
             lines = f.readlines()
-            words = [word for line in lines for word in line.split()]
+            words = [word.lower() for line in lines for word in line.split()]
         return words
 
     def getUniqueWords(self):
