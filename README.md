@@ -1,1 +1,2 @@
-# The Thunderfield AI Project
+# Thalia Fieldstone
+## The Thunderfield AI Project
