@@ -2,7 +2,7 @@
 ## The Thunderfield AI Project
 Thalia Fieldstone is a passionate songwriter trying her best to write poignant, 
 yet passionate indie songs for Thunderfield, an interdisciplinary music
-collective of independent artists based in Austin, TX. Her main songwriten acumen
+collective of independent artists based in Austin, TX. Her main songwriting acumen
 is a Recurrent Neural Network (RNN) that uses a simple LSTM (long short term 
 memory) architecture based on the word embedding model of computation built 
 using `pytorch` in Python 3.7.2. 
