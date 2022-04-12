@@ -13,4 +13,5 @@ consider her more of a dedicated Thunderfield fan rather than an actual member.
 ## Instructions
 1. Download and unpack the source code into a folder labeled `thunderfield`
 2. Modify the 4-word seed in the `main.py` source file to whatever you'd like.
+    - You may modify Thalia's default configurations using the configuration settings found in `poetics.json`. 
 3. Run Thalia using the command `python -l models/first-model.tfld main.py`
