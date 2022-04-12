@@ -1,4 +1,5 @@
-![](img/thalia-v1.jpg =200x200)
+![thalia fieldstone](img/thalia-v1.jpg)
+
 
 # Thalia Fieldstone
 ## The Thunderfield AI Project
