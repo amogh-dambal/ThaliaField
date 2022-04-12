@@ -32,7 +32,7 @@ if __name__ == "__main__":
         model = Model(dataset)
         train(dataset, model, args)
 
-    lyrics = predict(dataset, model, text='hark stave the rave', next_words=nextWords)
+    lyrics = predict(dataset, model, text='stare into the mirror', next_words=nextWords)
 
     i = 0
     for stanza in range(stanzas):
