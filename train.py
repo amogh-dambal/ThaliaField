@@ -30,7 +30,8 @@ def train(dataset, model, args):
             # TODO: add a verbose mode toggle
             print({"epoch": epoch, "batch": batch, "loss": loss.item()})
 
-    torch.save(model, "models/first-model.tfld")
+    if len(args.save) != 0:
+        torch.save(model, f"models/{args.save}.tfld")
 
 
 def predict(dataset, model, text, nextWords=240):

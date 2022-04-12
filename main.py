@@ -11,6 +11,7 @@ from train import *
 def getArgs():
     parser = argparse.ArgumentParser()
     parser.add_argument("-l", "--load", type=str, default="")
+    parser.add_argument("-s", "--save", type=str, default="")
     parser.add_argument("--max-epochs", type=int, default=10)
     parser.add_argument("--batch-size", type=int, default=256)
     parser.add_argument("--sequence-length", type=int, default=4)
